@@ -45,7 +45,7 @@ class TableController extends Controller
             'location' => $request->location,
         ]);
 
-        return to_route('admin.tables.index');
+        return to_route('admin.tables.index')->with('success', 'Meja Berhasil Di Buat!!!');
     }
 
     /**
@@ -81,7 +81,7 @@ class TableController extends Controller
     {
         $table->update($request->validated());
 
-        return to_route('admin.tables.index');
+        return to_route('admin.tables.index')->with('success', 'Meha Berhasil Di Ubah!!!');
 
     }
 
@@ -93,8 +93,9 @@ class TableController extends Controller
      */
     public function destroy(Table $table)
     {
+        $table->reservations()->delete();
         $table->delete();
 
-        return to_route('admin.tables.index');
+        return to_route('admin.tables.index')->with('danger', 'Meja Berhasil Di Hapus!!!');
     }
 }
