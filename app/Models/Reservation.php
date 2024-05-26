@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Table;
 
 class Reservation extends Model
 {
@@ -18,4 +19,13 @@ class Reservation extends Model
         'res_date',
         'guest_number',
     ];
+
+    protected $dates = [
+        'res_date',
+    ];
+
+    public function table(){
+        return $this->belongsTo(Table::class);
+    }
+
 }
